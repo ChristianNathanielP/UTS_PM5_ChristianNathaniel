@@ -1,6 +1,13 @@
 <resources>
     <string name="app_name">Second Choise</string>
-    <string name="title">Ujian Tengah Semester</string>
-    <string name="subTitle">Pemrograman Mobile</string>
-    <string name="pengantar">Silakan kerjakan pilihan berganda berikut dengan teliti dan jujur. Pilihlah jawaban yang paling tepat untuk setiap pertanyaan</string>
+    <string name="slogan">Tes Cepat, Skor Tepat!</string>
+    <string name="awalan1">Ujian yang tersedia:</string>
+    <string name="awalan1_btn">UTS Pemrograman Mobile</string>
+    <string name="awalan2">Video Pembelajaran yang tersedia:</string>
+    <string name="awalan2_btn">Tutorial Pemrograman Mobile</string>
+    <string name="soal1">Apa Warna Kesukaan Kamu?</string>
+    <string name="pilgan1">Biru</string>
+    <string name="pilgan2">Merah</string>
+    <string name="pilgan3">Kuning</string>
+    <string name="pilgan4">Hijau</string>
 </resources>

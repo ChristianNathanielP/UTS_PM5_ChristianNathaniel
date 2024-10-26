@@ -6,48 +6,92 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:layout_marginHorizontal="10dp"
+    android:paddingHorizontal="20dp"
     >
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/bigTitle"
+
+    <ImageView
+        android:id="@+id/icon"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:src="@mipmap/ic_launcher_round"
+        android:layout_marginTop="40dp"
+        />
+    
+    <TextView
+        android:id="@+id/slogan"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="10dp"
-        android:padding="20dp"
-        android:background="@drawable/border_radius">
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/title"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            app:layout_constraintTop_toTopOf="parent"
-            android:textColor="@color/white"
-            android:textAllCaps="true"/>
-        <TextView
-            android:id="@+id/subTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/subTitle"
-            app:layout_constraintTop_toBottomOf="@+id/title"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:textAlignment="center"
-            android:textColor="@color/white"/>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintTop_toBottomOf="@+id/icon"
+        android:text="@string/slogan"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:layout_marginTop="1dp"
+        />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/bigTitle"
-        android:layout_marginTop="5dp"
-        android:text="@string/pengantar"
-        android:textFontWeight="900"/>
+        android:id="@+id/awalan1"
+        app:layout_constraintTop_toBottomOf="@+id/slogan"
+        android:layout_marginTop="100dp"
+        android:text="@string/awalan1"
+        android:textSize="18sp"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/awalan1_btn"
+        app:layout_constraintTop_toBottomOf="@+id/awalan1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textAlignment="center"
+        android:text="@string/awalan1_btn"
+        android:textSize="12sp"
+        android:paddingVertical="5dp"
+        android:paddingHorizontal="50dp"
+        android:background="@drawable/border_radius"
+        android:layout_marginTop="10dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/awalan2"
+        app:layout_constraintTop_toBottomOf="@+id/awalan1_btn"
+        android:layout_marginTop="20dp"
+        android:text="@string/awalan2"
+        android:textSize="18sp"
+        />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/awalan2_btn"
+        app:layout_constraintTop_toBottomOf="@+id/awalan2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textAlignment="center"
+        android:text="@string/awalan2_btn"
+        android:textSize="12sp"
+        android:paddingVertical="5dp"
+        android:paddingHorizontal="50dp"
+        android:background="@drawable/border_radius"
+        android:layout_marginTop="10dp"
+        />
+
+
+
+
+
+
+
+
+
+
 
 
 
