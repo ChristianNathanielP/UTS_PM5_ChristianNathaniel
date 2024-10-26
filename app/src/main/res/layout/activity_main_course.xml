@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainCourse"
+    >
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/titleSoal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="30dp">
+
+        <TextView
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:text="@string/awalan1_btn"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:background="@drawable/border_radius"
+            android:textColor="@color/white"
+            android:paddingVertical="10dp"
+            android:fontFamily="@font/poppins_bold"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <RadioGroup
+        android:id="@+id/radioGrup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleSoal"
+        android:layout_marginTop="50dp"
+        android:layout_marginHorizontal="20dp"
+        >
+
+        <TextView
+            android:id="@+id/soal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_bold"
+            android:textSize="18sp"
+            />
+
+        <RadioButton
+            android:id="@+id/opsi1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:fontFamily="@font/poppins_regular"
+            android:paddingTop="5dp"
+            />
+
+        <RadioButton
+            android:id="@+id/opsi2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:fontFamily="@font/poppins_regular"
+            android:paddingTop="5dp"
+            />
+
+        <RadioButton
+            android:id="@+id/opsi3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:fontFamily="@font/poppins_regular"
+            android:paddingTop="5dp"
+            />
+
+        <RadioButton
+            android:id="@+id/opsi4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:fontFamily="@font/poppins_regular"
+            android:paddingTop="5dp"
+            android:layout_marginBottom="20dp"
+            />
+
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/btnNext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/radioGrup"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="@string/next"
+        android:backgroundTint="@color/sage"
+        android:layout_marginRight="20dp"/>
+
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/radioGrup"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="@string/cancel"
+        android:backgroundTint="@color/gray"
+        android:layout_marginStart="20dp"
+        android:visibility="gone"/>
+
+    <Button
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/back"
+        android:backgroundTint="@color/blue"
+        app:layout_constraintEnd_toStartOf="@+id/btnNext"
+        app:layout_constraintTop_toBottomOf="@+id/radioGrup"
+        android:layout_marginEnd="10dp"
+        android:visibility="gone"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
