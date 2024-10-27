@@ -4,6 +4,9 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <item name="colorPrimary">@color/green</item>
+
+        <item name="android:colorBackground">@color/white</item>
+        <item name="android:textColor">@color/black</item>
     </style>
 
     <style name="Theme.UTS_PM5_SecondChoise" parent="Base.Theme.UTS_PM5_SecondChoise" />

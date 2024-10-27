@@ -13,6 +13,9 @@
         android:theme="@style/Theme.UTS_PM5_SecondChoise"
         tools:targetApi="31">
         <activity
+            android:name=".AnswerActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainCourse"
             android:exported="false" />
         <activity

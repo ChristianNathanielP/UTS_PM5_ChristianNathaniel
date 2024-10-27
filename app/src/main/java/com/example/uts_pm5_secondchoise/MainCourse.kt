@@ -1,10 +1,12 @@
 package com.example.uts_pm5_secondchoise
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.RadioButton
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -26,35 +28,44 @@ class MainCourse : AppCompatActivity() {
     // Opsi Jawaban
     val options = listOf(
         listOf(
-            "A. NullPointerException 😱",
-            "B. Aplikasi berjalan lancar tanpa bug 🤭",
-            "C. Deadline mendadak maju 📅",
-            "D. Pengumuman update Android terbaru 😅"
+            "A. Biar nggak ada kejutan NullPointerException 🥲",
+            "B. Biar kode bisa dibaca sama semua orang",
+            "C. Biar cepat compile-nya",
+            "D. Biar nggak ada error sama sekali (ciee)"
         ),
         listOf(
-            "A. Pengguna, karena aplikasi nggak bisa dibuka 😭",
-            "B. Programmer, karena harus cari bug 🕵️",
-            "C. Android, karena dia ngambek 😔",
-            "D. Laptop, karena sering dipukul-pukul 😆"
+            "A. onStart()",
+            "B. onCreate()",
+            "C. onResume()",
+            "D. onPause()"
         ),
         listOf(
-            "A. Karena mereka saling memahami 💕",
-            "B. Karena Kotlin selalu siap mendukung Android 💪",
-            "C. Karena Kotlin senang 'Null Safety' 🥰",
-            "D. Karena Android sudah capek ditinggal Java 😅"
+            "A. Karena Kotlin setia sama Android 💕",
+            "B. Karena Kotlin anti-null",
+            "C. Karena Kotlin lebih populer dari bahasa lain",
+            "D. Karena Kotlin bikin Android ngga galau"
         ),
         listOf(
-            "A. 'Pergilah jauh-jauh dari kodinganku!' 🚫",
-            "B. 'Kapan kamu akan pergi selamanya?' 😩",
-            "C. 'Please, fix yourself ya, biar kita happy ending.' 💔",
-            "D. 'Kalau kamu pergi, aku janji nggak bakal nyari lagi.' 😆"
+            "A. Bagian dari layar yang bisa disentuh atau dilihat",
+            "B. Struktur data untuk simpan data pengguna",
+            "C. Kumpulan library Android",
+            "D. Sistem untuk mengelola aktivitas aplikasi"
         ),
         listOf(
-            "A. Nullable, biar kamu jadi null safety-ku. 🥰",
-            "B. Boolean, biar aku bisa jadi true buat kamu ❤️",
-            "C. Integer, biar aku bisa count on you selalu 🧮",
-            "D. String, biar aku bisa concatenate sama kamu 😘"
+            "A. val itu tetap, var bisa berubah",
+            "B. val buat variabel wajib, var buat opsional",
+            "C. val itu variabel sementara, var untuk selamanya",
+            "D. val buat integer, var buat string"
         )
+    )
+
+    // Jawaban
+    val correctAnswers = listOf(
+        "A. Biar nggak ada kejutan NullPointerException 🥲",
+        "B. onCreate()",
+        "A. Karena Kotlin setia sama Android 💕",
+        "A. Bagian dari layar yang bisa disentuh atau dilihat",
+        "A. val itu tetap, var bisa berubah"
     )
 
     private var currentQuestionIndex = 0
@@ -71,7 +82,7 @@ class MainCourse : AppCompatActivity() {
             userAnswers.add(null)
         }
 
-        displayQuestion()
+        displayQuestion() // Menjalankan Fungsi DisplayQuestion di bawah
 
         // Tombol Cancel
         binding.radioGrup.setOnCheckedChangeListener { _, checkedId ->
@@ -81,7 +92,6 @@ class MainCourse : AppCompatActivity() {
                 binding.btnCancel.visibility = View.VISIBLE
             }
         }
-
         binding.btnCancel.setOnClickListener {
             binding.radioGrup.clearCheck()
             userAnswers[currentQuestionIndex] = null
@@ -90,7 +100,9 @@ class MainCourse : AppCompatActivity() {
 
         // Tombol Next
         binding.btnNext.setOnClickListener {
-            if (currentQuestionIndex < questions.size - 1) {
+            if (currentQuestionIndex == questions.size - 1) {
+                showConfirmationDialog()
+            } else {
                 currentQuestionIndex++
                 displayQuestion()
             }
@@ -104,7 +116,6 @@ class MainCourse : AppCompatActivity() {
             }
         }
 
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
@@ -114,45 +125,95 @@ class MainCourse : AppCompatActivity() {
 
     private fun displayQuestion(){
         try {
-            // Set teks soal berdasarkan indeks soal saat ini
+            // Remove listener temporarily to avoid triggering clear when setting saved answers
+            binding.radioGrup.setOnCheckedChangeListener(null)
+
+            // Tampilkan teks pertanyaan sesuai dengan nomor pertanyaan saat ini
             binding.soal.text = questions[currentQuestionIndex]
             val optionsForCurrentQuestion = options[currentQuestionIndex]
 
-            // Bersihkan semua pilihan sebelumnya
-            binding.radioGrup.clearCheck()
-
-            // Set teks untuk setiap RadioButton berdasarkan opsi yang tersedia
+            // Tampilkan pilihan jawaban untuk pertanyaan saat ini
             binding.opsi1.text = optionsForCurrentQuestion[0]
             binding.opsi2.text = optionsForCurrentQuestion[1]
             binding.opsi3.text = optionsForCurrentQuestion[2]
             binding.opsi4.text = optionsForCurrentQuestion[3]
 
-            // Menampilkan jawaban yang sudah dipilih sebelumnya (jika ada)
+            // Cek apakah sudah ada jawaban sebelumnya untuk pertanyaan ini, jika ada maka tampilkan jawaban tersebut
             val userAnswer = userAnswers[currentQuestionIndex]
             if (userAnswer != null) {
+                // Tandai pilihan jawaban yang sudah dipilih sebelumnya
                 when (userAnswer) {
                     optionsForCurrentQuestion[0] -> binding.opsi1.isChecked = true
                     optionsForCurrentQuestion[1] -> binding.opsi2.isChecked = true
                     optionsForCurrentQuestion[2] -> binding.opsi3.isChecked = true
                     optionsForCurrentQuestion[3] -> binding.opsi4.isChecked = true
                 }
-                binding.btnCancel.visibility = View.VISIBLE // Tampilkan tombol Cancel jika ada jawaban
+                binding.btnCancel.visibility = View.VISIBLE
             } else {
-                binding.btnCancel.visibility = View.GONE // Sembunyikan tombol Cancel jika tidak ada jawaban
+                binding.radioGrup.clearCheck()
+                binding.btnCancel.visibility = View.GONE
             }
 
-            // Atur visibilitas tombol Back
+            // Re-enable listener for saving answers
+            binding.radioGrup.setOnCheckedChangeListener { _, checkedId ->
+                if (checkedId != -1) {
+                    // Simpan jawaban yang baru dipilih pengguna
+                    val selectedRadioButton = findViewById<RadioButton>(checkedId)
+                    userAnswers[currentQuestionIndex] = selectedRadioButton.text.toString()
+                    binding.btnCancel.visibility = View.VISIBLE
+                }
+            }
+
             binding.btnBack.visibility = if (currentQuestionIndex == 0) View.GONE else View.VISIBLE
+
+            if (currentQuestionIndex == questions.size - 1) {
+                binding.btnNext.text = "Submit" // Soal Terakhir berubah menjadi Submit
+            } else {
+                binding.btnNext.text = "Next"
+            }
 
         } catch (e: IndexOutOfBoundsException) {
             e.printStackTrace()
-            Toast.makeText(this, "Error: Indeks di luar batas.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Error: Index out of bounds.", Toast.LENGTH_SHORT).show()
         } catch (e: ClassCastException) {
             e.printStackTrace()
-            Toast.makeText(this, "Error: Tipe data tidak sesuai.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Error: Data type mismatch.", Toast.LENGTH_SHORT).show()
         } catch (e: Exception) {
             e.printStackTrace()
             Toast.makeText(this, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun showConfirmationDialog() {
+        val builder = AlertDialog.Builder(this)
+        builder.setTitle("Kirim Jawaban?")
+        builder.setMessage("Apakah Kamu yakin untuk mengirim jawaban?")
+
+        builder.setPositiveButton("Yakin") { _, _ ->
+            submitAnswers()
+        }
+        builder.setNegativeButton("Belum Yakin") { dialog, _ ->
+            dialog.dismiss()
+        }
+
+        val dialog = builder.create()
+        dialog.show()
+    }
+
+    private fun submitAnswers() {
+        var score = 0
+
+        // Menghitung banyaknya jawaban benar
+        for (i in userAnswers.indices) {
+            if (userAnswers[i] == correctAnswers[i]) {
+                score++
+            }
+        }
+
+        // Kirim Data score dan banyak question ke Answer Activity
+        val intent = Intent(this, AnswerActivity::class.java)
+        intent.putExtra("score", score)
+        intent.putExtra("totalQuestions", questions.size)
+        startActivity(intent)
     }
 }

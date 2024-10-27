@@ -6,12 +6,11 @@
     <string name="awalan2">Video Pembelajaran yang tersedia:</string>
     <string name="awalan2_btn">Tutorial Pemrograman Mobile</string>
     <string name="titleSoal">Ujian tengah semester</string>
-    <string name="soal1">1. Apa Warna Kesukaan Kamu?</string>
-    <string name="pilgan1">Biru</string>
-    <string name="pilgan2">Merah</string>
-    <string name="pilgan3">Kuning</string>
-    <string name="pilgan4">Hijau</string>
     <string name="next">Next</string>
     <string name="cancel">Cancel</string>
     <string name="back">Back</string>
+    <string name="done">Selamat kamu telah menyelesaikan UTS 🎉🎉🎉</string>
+    <string name="nilai">Nilai Kamu adalah</string>
+    <string name="score">Score kamu adalah: </string>
+    <string name="backHome">Kembali ke Home</string>
 </resources>
